@@ -1,14 +1,14 @@
 package main
 
 func lengthOfLongestSubstring(s string) int {
-	hm := make(map[byte]int)
+	hm := [128]int{}
 
 	max := 0
 	curMax := 0
 	for i, j := 0, 0; j < len(s); j++ {
-		p, ok := hm[s[j]]
+		p := hm[s[j]]
 
-		if ok {
+		if p != 0 {
 			if p > i {
 				i = p
 			}
