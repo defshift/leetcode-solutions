@@ -8,10 +8,8 @@ func lengthOfLongestSubstring(s string) int {
 	for i, j := 0, 0; j < len(s); j++ {
 		p := hm[s[j]]
 
-		if p != 0 {
-			if p > i {
-				i = p
-			}
+		if p != 0 && p > i {
+			i = p
 		}
 
 		curMax = j - i + 1
