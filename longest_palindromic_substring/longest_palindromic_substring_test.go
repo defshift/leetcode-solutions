@@ -10,5 +10,6 @@ func assertStringResult(t *testing.T, s, exp string) {
 }
 
 func Test_longestPalindrome(t *testing.T) {
-	assertStringResult(t, "babdrrggbbbabbb", "bab")
+	assertStringResult(t, "babdrrggbbbabbb", "bbbabbb")
+	assertStringResult(t, "rvwe  uuIuu mmmmpmmm", "mmmpmmm")
 }

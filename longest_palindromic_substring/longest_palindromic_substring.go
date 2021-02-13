@@ -5,11 +5,11 @@ func longestPFromCenter(s string, left, right int) int {
 	r := right
 
 	for l >= 0 && r < len(s) && s[l] == s[r] {
-		l++
+		l--
 		r++
 	}
 
-	return r - l - 1
+	return r - l + 1
 }
 
 func longestPalindrome(s string) string {
@@ -34,5 +34,5 @@ func longestPalindrome(s string) string {
 		}
 	}
 
-	return s[start : end+3]
+	return s[start+1 : end]
 }
