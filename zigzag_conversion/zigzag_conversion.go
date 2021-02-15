@@ -1,13 +1,15 @@
 package main
 
-import "bytes"
+import (
+	"bytes"
+)
 
 func convert(s string, numRows int) string {
-	n := len(s)
-	if n == 0 || n == 1 {
+	if numRows == 0 || numRows == 1 {
 		return s
 	}
 
+	n := len(s)
 	delta := 2*numRows - 2
 	var b bytes.Buffer
 

@@ -20,4 +20,12 @@ func Test_convert(t *testing.T) {
 	if act != exp {
 		t.Errorf("Expected: %v Actual: %v", exp, act)
 	}
+
+	val = "ABV"
+	exp = "ABV"
+	act = convert(val, 1)
+
+	if act != exp {
+		t.Errorf("Expected: %v Actual: %v", exp, act)
+	}
 }
