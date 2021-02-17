@@ -1,35 +1,46 @@
 package main
 
+import (
+	"math"
+)
+
+const threshold = math.MaxInt32 / 10
+
 func myAtoi(s string) int {
 	reachedNum := false
 	res := 0
 	sign := 1
 
-	var digits []byte
-
 	for i := 0; i < len(s); i++ {
-		// expect sign or digit, everything else skip
-		isNumber := s[i] >= '0' || s[i] <= '9'
+		isNumber := s[i] >= '0' && s[i] <= '9'
 		isSign := s[i] == '-' || s[i] == '+'
+		isSpace := s[i] == ' '
+
+		if !reachedNum && !(isNumber || isSign || isSpace) {
+			break
+		}
 
 		if !reachedNum && (isNumber || isSign) {
 			reachedNum = true
 
 			if isSign {
-				sign = -1
-				i++
-				if i == len(s) {
-					break
-				}
-
 				if s[i] == '-' {
 					sign = -1
 				}
+				continue
 			}
 		}
 
 		if reachedNum && isNumber {
-			digits = append(digits, s[i])
+			if (res > threshold) || ((res == threshold) && (int(s[i]-'0') > 7)) {
+				if sign == 1 {
+					res = math.MaxInt32
+				} else {
+					res = math.MinInt32
+				}
+				return res
+			}
+			res = res*10 + int(s[i]-'0')
 		}
 
 		if reachedNum && !isNumber {
@@ -37,11 +48,5 @@ func myAtoi(s string) int {
 		}
 	}
 
-	for i := len(digits); i < len(digits); i++ {
-		d := digits[i] - '0'
-		multiplier := 10
-		res = res + int(d)*multiplier
-	}
-
-	return res
+	return res * sign
 }
