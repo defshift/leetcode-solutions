@@ -2,24 +2,23 @@ package main
 
 import "testing"
 
-func assertStringResult(t *testing.T, s string, expLen int) {
-	l := lengthOfLongestSubstring(s)
-	if l != expLen {
-		t.Errorf("String '%v' should have longest substring with length %d, actual %d", s, expLen, l)
+func assert(t *testing.T, act, exp int) {
+	if act != exp {
+		t.Errorf("Expected: %v Actual: %v", exp, act)
 	}
 }
 
 func Test_lengthOfLongestSubstring(t *testing.T) {
-	assertStringResult(t, "bba", 2)
-	assertStringResult(t, "abcb", 3)
-	assertStringResult(t, "abcabcbb", 3)
-	assertStringResult(t, "er er ewrwer34 34444 ", 6)
-	assertStringResult(t, "dvdf", 3)
-	assertStringResult(t, "abs", 3)
-	assertStringResult(t, "abss", 3)
-	assertStringResult(t, "", 0)
-	assertStringResult(t, "abs absdf", 6)
-	assertStringResult(t, "aaaaa", 1)
-	assertStringResult(t, "aaaaaaaabca", 3)
-	assertStringResult(t, "abcdawebom", 8)
+	assert(t, lengthOfLongestSubstring("bba"), 2)
+	assert(t, lengthOfLongestSubstring("abcb"), 3)
+	assert(t, lengthOfLongestSubstring("abcabcbb"), 3)
+	assert(t, lengthOfLongestSubstring("er er ewrwer34 34444 "), 6)
+	assert(t, lengthOfLongestSubstring("dvdf"), 3)
+	assert(t, lengthOfLongestSubstring("abs"), 3)
+	assert(t, lengthOfLongestSubstring("abss"), 3)
+	assert(t, lengthOfLongestSubstring(""), 0)
+	assert(t, lengthOfLongestSubstring("abs absdf"), 6)
+	assert(t, lengthOfLongestSubstring("aaaaa"), 1)
+	assert(t, lengthOfLongestSubstring("aaaaaaaabca"), 3)
+	assert(t, lengthOfLongestSubstring("abcdawebom"), 8)
 }
