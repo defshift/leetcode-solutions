@@ -1,9 +1,5 @@
 package integer_to_roman
 
-import (
-	"bytes"
-)
-
 const (
 	I  = 1
 	IV = 4
@@ -45,7 +41,7 @@ func intToRoman(num int) string {
 	rem := num
 	i := len(mapping)
 
-	res := bytes.Buffer{}
+	res := make([]byte, 0, 100)
 
 	for i != 0 {
 		div := mapping[i-1].decimalVal
@@ -59,9 +55,10 @@ func intToRoman(num int) string {
 		if rs == 0 {
 			i--
 		} else {
-			res.WriteString(mapping[i-1].romanVal)
+			b := []byte(mapping[i-1].romanVal)
+			res = append(res, b...)
 		}
 	}
 
-	return res.String()
+	return string(res)
 }
